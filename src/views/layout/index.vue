@@ -1,4 +1,6 @@
 <script setup>
+import router from '../../router';
+
 
 </script>
 
@@ -21,11 +23,60 @@
       <el-container>
         <!-- 左侧菜单 -->
         <el-aside width="200px" class="aside">
-          左侧菜单栏
+          <!-- 左侧菜单栏 -->
+          <el-menu router>
+            <!-- 首页菜单 -->
+            
+            <el-menu-item index="/index">
+              <el-icon><Promotion /></el-icon> Homepage
+            </el-menu-item>
+            
+            <!-- 班级管理菜单 -->
+            <el-sub-menu index="/manage">
+              <template #title>
+                <el-icon><Menu /></el-icon> Class Management
+              </template>
+              <el-menu-item index="/clazzs">
+                <el-icon><HomeFilled /></el-icon> Classes
+              </el-menu-item>
+              <el-menu-item index="/students">
+                <el-icon><UserFilled /></el-icon> Students
+              </el-menu-item>
+            </el-sub-menu>
+            
+            <!-- 系统信息管理 -->
+            <el-sub-menu index="/system">
+              <template #title>
+                <el-icon><Tools /></el-icon> System Information
+              </template>
+              <el-menu-item index="/depts">
+                <el-icon><HelpFilled /></el-icon> Department Management
+              </el-menu-item>
+              <el-menu-item index="/emps">
+                <el-icon><Avatar /></el-icon> Employee Management
+              </el-menu-item>
+            </el-sub-menu>
+
+            <!-- 数据统计管理 -->
+            <el-sub-menu index="/report">
+              <template #title>
+                <el-icon><Histogram /></el-icon> Statistics
+              </template>
+              <el-menu-item index="/empReport">
+                <el-icon><InfoFilled /></el-icon> Employee Data
+              </el-menu-item>
+              <el-menu-item index="/stuReport">
+                <el-icon><Share /></el-icon> Student Data
+              </el-menu-item>
+              <el-menu-item index="/log">
+                <el-icon><Document /></el-icon> Logs Info
+              </el-menu-item>
+            </el-sub-menu>
+          </el-menu>
         </el-aside>
         
         <el-main>
-          右侧核心展示区域
+          <router-view></router-view>
         </el-main>
       </el-container>
       
@@ -41,7 +92,8 @@
 .title {
   color: white;
   font-size: 40px;
-  font-family: 楷体;
+  /* font-family: 楷体; */
+  font-family: 'Courier New', Courier, monospace;
   line-height: 60px;
   font-weight: bolder;
 }
