@@ -110,7 +110,7 @@
 </script>
 
 <template>
-  <h1>Department Management</h1>
+  <h1>Department Dashboard</h1>
   <div class="container">
     <el-button type="primary" @click="addDept">+ Add Department</el-button>
   </div>

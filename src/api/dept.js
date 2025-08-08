@@ -1,6 +1,5 @@
 import request from '@/utils/request';
 
-
 // Find all departments
 export const findAll = () => request.get('/depts');
 
