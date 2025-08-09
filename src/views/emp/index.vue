@@ -4,6 +4,7 @@
   import { findAll as findAllDepts } from '@/api/dept';
   import { ElMessage, ElMessageBox } from 'element-plus';
   import { addEmp, findById, updateEmp, deletebyIds} from '@/api/emp';
+
   
   //Job Title List
   const jobs = ref([{ name: 'Teacher', value: 1 },{ name: 'Administrator', value: 2 },{ name: 'Counselor', value: 3 },{ name: 'Librarian', value: 4 },{ name: 'Department Chair', value: 5 },{ name: 'Other', value: 6 }])
@@ -11,6 +12,7 @@
   const genders = ref([{ name: 'Male', value: 1 }, { name: 'Female', value: 2 }])
   const depts = ref([]);
   const selectedEmpIds = ref([]);
+  const token = ref({});
 
 
   const searchEmp = ref({
@@ -74,9 +76,18 @@
   }
 
   onMounted(() => {
+    // get token for upload 
+    getToken();
     search();
     queryAllDepts();
   })
+
+  const getToken = () => {
+    const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+    if (loginUser && loginUser) {
+      token.value = loginUser.token;
+    }
+  }
 
   const queryAllDepts = async () => {
     const result = await findAllDepts();
@@ -211,7 +222,6 @@
     )
     .then( async () => {
       if (selectedEmpIds.value && selectedEmpIds.value.length > 0){
-        console.log("I got here");
         const ids = selectedEmpIds.value.join(',');
         const result = await deletebyIds(ids);
         if (result.code) {
@@ -422,7 +432,7 @@
 
    <!-- add/edit employee dialog -->
   <el-dialog v-model="dialogVisible" :title="dialogTitle">
-    {{ employee }}
+    <!-- {{ employee }} -->
       <el-form :model="employee" :rules="rules" ref="empFormRef" label-width="80px">
         <!-- Basic Info -->
         <!-- First Row -->
@@ -497,6 +507,7 @@
               <el-upload
                 class="avatar-uploader"
                 action="/api/upload"
+                :headers="{'token': token }"
                 :show-file-list="false"
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
@@ -596,5 +607,5 @@
     /* 添加灰色的虚线边框 */
     border: 1px dashed var(--el-border-color);
   }
-  
+
 </style>

@@ -1,6 +1,38 @@
 <script setup>
-import router from '../../router';
+  import { onMounted, ref }  from 'vue';
+  import { useRouter } from 'vue-router';
+  import { ElMessage, ElMessageBox } from 'element-plus';
 
+  const loginName = ref('');
+  const router = useRouter();
+
+  const setLoginName = () => {
+    const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+    if (loginUser && loginUser.username) {
+      loginName.value = loginUser.username;
+    }
+  }
+
+  const logout = () => {
+    ElMessageBox.confirm(
+      'This will log you out. Continue?', 'Warning',
+      {
+        confirmButtonText: 'OK', cancelButtonText: 'Cancel', type: 'warning',
+      }
+    )
+    .then( async () => {
+      localStorage.removeItem('loginUser');
+      ElMessage.success('Logged out successfully');
+      router.push('/login');
+    })
+    .catch(() => {
+      ElMessage.info('Log out cancelled');
+    })
+  }
+
+  onMounted(() => {
+    setLoginName();
+  })
 
 </script>
 
@@ -12,10 +44,10 @@ import router from '../../router';
         <span class="title">Tlias Management System</span>
         <span class="right_tool">
           <a href="">
-            <el-icon><EditPen /></el-icon> 修改密码 &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
+            <el-icon><EditPen /></el-icon> Change Password &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
           </a>
-          <a href="">
-            <el-icon><SwitchButton /></el-icon> 退出登录
+          <a href="" @click.prevent="logout">
+            <el-icon><SwitchButton /></el-icon> Log Out [ {{ loginName  }} ]
           </a>
         </span>
       </el-header>

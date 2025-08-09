@@ -1,7 +1,23 @@
 <script setup>
   import { ref } from 'vue'
+  import { login as loginRequest} from '@/api/login';
+  import { ElMessage } from 'element-plus';
+  import { useRouter } from 'vue-router';
   
   let loginForm = ref({username:'', password:''})
+  const router = useRouter();
+
+  const login = async () => {
+    const result = await loginRequest(loginForm.value);
+    if (result.code) {
+      ElMessage.success('Login successful');
+      // Get all info shared between sessions
+      localStorage.setItem('loginUser', JSON.stringify(result.data));
+      router.push('/index');
+    } else {
+      ElMessage.error(result.msg);
+    }
+  }
   
 </script>
 
@@ -9,18 +25,18 @@
   <div id="container">
     <div class="login-form">
       <el-form label-width="80px">
-        <p class="title">Tlias智能学习辅助系统</p>
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="loginForm.username" placeholder="请输入用户名"></el-input>
+        <p class="title">Tlias Management System</p>
+        <el-form-item label="Username" prop="username">
+          <el-input v-model="loginForm.username" placeholder="Enter username"></el-input>
         </el-form-item>
 
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="loginForm.password" placeholder="请输入密码"></el-input>
+        <el-form-item label="Password" prop="password">
+          <el-input type="password" v-model="loginForm.password" placeholder="Enter Password"></el-input>
         </el-form-item>
 
         <el-form-item>
-          <el-button class="button" type="primary" @click="">登 录</el-button>
-          <el-button class="button" type="info" @click="">重 置</el-button>
+          <el-button class="button" type="primary" @click="login">Login</el-button>
+          <el-button class="button" type="info" @click="">Reset</el-button>
         </el-form-item>
       </el-form>
     </div>
