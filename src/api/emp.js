@@ -9,6 +9,10 @@ export const findById = (id) => {
   return request.get(`/emps/${id}`);
 }
 
+export const listEmps = () => {
+  return request.get('/emps/list');
+}
+
 export const addEmp = (emp) => {
   return request.post('/emps', emp);
 }

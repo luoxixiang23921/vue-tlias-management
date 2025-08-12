@@ -18,6 +18,13 @@
       ElMessage.error(result.msg);
     }
   }
+
+  const clear = () => {
+    loginForm.value = {
+      username: '',
+      password: ''
+    }
+  }
   
 </script>
 
@@ -36,7 +43,7 @@
 
         <el-form-item>
           <el-button class="button" type="primary" @click="login">Login</el-button>
-          <el-button class="button" type="info" @click="">Reset</el-button>
+          <el-button class="button" type="info" @click="clear">Reset</el-button>
         </el-form-item>
       </el-form>
     </div>

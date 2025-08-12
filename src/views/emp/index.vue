@@ -4,6 +4,7 @@
   import { findAll as findAllDepts } from '@/api/dept';
   import { ElMessage, ElMessageBox } from 'element-plus';
   import { addEmp, findById, updateEmp, deletebyIds} from '@/api/emp';
+  import { formatDateTime } from '@/utils/date';
 
   
   //Job Title List
@@ -184,7 +185,6 @@
   }
 
   const deleteById = (id) => {
-    console.log('deleteById', id);
     ElMessageBox.confirm(
       'This will permanently delete this Employee. Continue?',
       'Warning',
@@ -406,7 +406,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="entryDate" label="Entry Date" align="center"/>
-      <el-table-column prop="updateTime" label="Last Updated" align="center"/>
+      <el-table-column prop="updateTime" label="Last Updated" :formatter="formatDateTime" align="center"/>
       <el-table-column label="Opeartion" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" @click="openEditDialogue(scope.row.id)"><el-icon><EditPen /></el-icon>  Edit</el-button>

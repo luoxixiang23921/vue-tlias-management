@@ -3,6 +3,7 @@
   import { onMounted, ref } from 'vue';  
   import { add, findAll, findById, update, deleteById} from '@/api/dept';
   import { ElMessage, ElMessageBox} from 'element-plus';
+  import { formatDateTime } from '@/utils/date';
 
   const deptList = ref([]);
   const dept = ref({name: ''});
@@ -120,7 +121,7 @@
     <el-table :data="deptList" border style="width: 100%">
       <el-table-column type="index" align="center" width="100" />
       <el-table-column prop="name" label="Department Name" align="center" width="260" />
-      <el-table-column prop="updateTime" label="Last Updated Time" align="center" width="300"/>
+      <el-table-column prop="updateTime" :formatter="formatDateTime" label="Last Updated Time" align="center" width="300"/>
       <el-table-column label="Opeartion" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" @click="edit(scope.row.id)"><el-icon><EditPen /></el-icon>  Edit</el-button>
