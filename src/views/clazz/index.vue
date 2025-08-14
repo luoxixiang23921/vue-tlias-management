@@ -200,7 +200,7 @@
 
   <!-- buttons -->
   <div class="container"> 
-    <el-button type="primary" @click="openAddClazzDialogue">Add Class</el-button>
+    <el-button type="success" @click="openAddClazzDialogue">+ Add Class</el-button>
   </div>
 
   <!-- table -->

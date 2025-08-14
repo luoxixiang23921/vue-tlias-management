@@ -113,7 +113,7 @@
 <template>
   <h1>Department Dashboard</h1>
   <div class="container">
-    <el-button type="primary" @click="addDept">+ Add Department</el-button>
+    <el-button type="success" @click="addDept">+ Add Department</el-button>
   </div>
 
   <!-- table -->

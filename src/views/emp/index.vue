@@ -374,8 +374,8 @@
 
   <!-- buttons -->
   <div class="container"> 
-    <el-button type="primary" @click="openAddEmpDialogue">Add Employee</el-button>
-    <el-button type="danger" @click="deleteBySelectedIds">Delete Selected</el-button>
+    <el-button type="success" @click="openAddEmpDialogue">+ Add Employee</el-button>
+    <el-button type="danger" @click="deleteBySelectedIds">- Delete Selected</el-button>
   </div>
 
   <!-- table -->
