@@ -103,7 +103,7 @@
   const rules = ref({
     name: [
       { required: true, message: 'Cannot be empty', trigger: 'blur' },
-      { min: 2, max: 10, message: 'Length should be between 2 and 10', trigger: 'blur' },
+      { min: 2, max: 40, message: 'Length should be between 2 and 40', trigger: 'blur' },
     ]
   })
 
