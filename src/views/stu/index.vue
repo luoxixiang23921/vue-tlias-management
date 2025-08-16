@@ -269,7 +269,7 @@ const openViolation = (id) => {
     <!-- Table -->
     <el-table :data="tableData" border style="width: 100%" fit @selection-change="handleSelectionChange">
       <el-table-column type="selection"  align="center" width="35" />
-      <el-table-column prop="name" label="Name" align="center" width="100px" />
+      <el-table-column prop="name" label="Name" align="center" width="150px" />
       <el-table-column prop="no" label="Student Id" align="center" width="130px" />
       <el-table-column prop="clazzName" label="Class" align="center" width="160px"/>
       <el-table-column prop="gender" label="Gender" align="center" width="70px" >

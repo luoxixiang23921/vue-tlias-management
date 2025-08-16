@@ -291,8 +291,7 @@
       { required: true, message: 'Cannot be empty', trigger: 'blur' }
     ],
     phone: [
-      { required: true, message: 'Cannot be empty', trigger: 'blur' },
-      { pattern: /^\d{10}$/, message: 'Invalid phone number format', trigger: 'blur' }
+      { required: true, message: 'Cannot be empty', trigger: 'blur' }
     ]
   })
 
