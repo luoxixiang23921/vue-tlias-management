@@ -239,7 +239,6 @@
 
      <!-- add/edit employee dialog -->
   <el-dialog v-model="dialogVisible" :title="dialogTitle">
-    {{ clazz }}
       <el-form :model="clazz" :rules="rules" ref="clazzFormRef" label-width="80px">
         <!-- Basic Info -->
         <!-- First Row -->

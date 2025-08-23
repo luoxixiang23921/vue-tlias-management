@@ -197,7 +197,7 @@ const delById = async (id) => {
 
 //batch delete students
 const delByIds = async () => {
-  ElMessageBox.confirm('This will permanently delete these students. Continue?' , 'Deleting Students', {confirmButtonText:'确认', cancelButtonText:'取消',type:'warning'})
+  ElMessageBox.confirm('This will permanently delete these students. Continue?' , 'Deleting Students', {confirmButtonText:'Confirm', cancelButtonText:'Cancel',type:'warning'})
     .then(async () => {
       let result =  await deleteApi(selectIds.value.join(','))
       if(result.code) {
